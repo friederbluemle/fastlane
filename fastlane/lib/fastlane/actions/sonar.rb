@@ -19,6 +19,7 @@ module Fastlane
         sonar_scanner_args << "-Dsonar.language=\"#{params[:project_language]}\"" if params[:project_language]
         sonar_scanner_args << "-Dsonar.sourceEncoding=\"#{params[:source_encoding]}\"" if params[:source_encoding]
         sonar_scanner_args << "-Dsonar.login=\"#{params[:sonar_login]}\"" if params[:sonar_login]
+        sonar_scanner_args << "-Dsonar.host.url=\"#{params[:sonar_host_url]}\"" if params[:sonar_host_url]
         sonar_scanner_args << params[:sonar_runner_args] if params[:sonar_runner_args]
 
         command = [
@@ -91,7 +92,12 @@ module Fastlane
                                        description: "Pass the Sonar Login token (e.g: xxxxxxprivate_token_XXXXbXX7e)",
                                        optional: true,
                                        is_string: true,
-                                       sensitive: true)
+                                       sensitive: true),
+          FastlaneCore::ConfigItem.new(key: :sonar_host_url,
+                                       env_name: "FL_SONAR_HOST_URL",
+                                       description: "The SonarQube Server URL (e.g: https://sonar.company.com)",
+                                       default_value: "http://localhost:9000",
+                                       optional: true)
         ]
       end
 

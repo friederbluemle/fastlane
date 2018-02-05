@@ -3179,7 +3179,8 @@ func sonar(projectConfigurationPath: String? = nil,
            projectLanguage: String? = nil,
            sourceEncoding: String? = nil,
            sonarRunnerArgs: String? = nil,
-           sonarLogin: String? = nil) {
+           sonarLogin: String? = nil,
+           sonarHostUrl: String? = nil) {
   let command = RubyCommand(commandID: "", methodName: "sonar", className: nil, args: [RubyCommand.Argument(name: "project_configuration_path", value: projectConfigurationPath),
                                                                                        RubyCommand.Argument(name: "project_key", value: projectKey),
                                                                                        RubyCommand.Argument(name: "project_name", value: projectName),
@@ -3188,7 +3189,8 @@ func sonar(projectConfigurationPath: String? = nil,
                                                                                        RubyCommand.Argument(name: "project_language", value: projectLanguage),
                                                                                        RubyCommand.Argument(name: "source_encoding", value: sourceEncoding),
                                                                                        RubyCommand.Argument(name: "sonar_runner_args", value: sonarRunnerArgs),
-                                                                                       RubyCommand.Argument(name: "sonar_login", value: sonarLogin)])
+                                                                                       RubyCommand.Argument(name: "sonar_login", value: sonarLogin),
+                                                                                       RubyCommand.Argument(name: "sonar_host_url", value: sonarHostUrl)])
   _ = runner.executeCommand(command)
 }
 func splunkmint(dsym: String? = nil,
